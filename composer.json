@@ -1,0 +1,22 @@
+{
+    "name": "robsen77/yahoo-finance-api",
+    "type": "library",
+    "description": "PHP library for accessing Yahoo Finance data",
+    "keywords": ["php", "yahoo", "finance", "stock", "share", "history", "market", "api"],
+    "homepage": "https://github.com/robsen77/yahoo-finance-api",
+    "license": "",
+    "require": {
+    },
+    "authors": [
+        {
+            "name": "Robert Bernhard",
+            "email": "bloddynewbie@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-0": {"Robsen77\\YahooFinanceApi\\": ""}
+    }
+}

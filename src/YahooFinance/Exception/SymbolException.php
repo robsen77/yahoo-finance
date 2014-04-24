@@ -1,7 +1,7 @@
 <?php
 /**
  * Class SymbolException
- * @package Robsen77\YahooFinanceApi\Exception
+ * @package Robsen77\YahooFinance\Exception
  *
  * @author Robert Bernhard <bloddynewbie@gmail.com>
  */
@@ -13,11 +13,10 @@
  * Time: 02:48
  */
 
-namespace Robsen77\YahooFinanceApi\Exception;
+namespace Robsen77\YahooFinance\Exception;
 
 
 class SymbolException extends \Exception
 {
 
 }
- 

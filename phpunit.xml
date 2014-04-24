@@ -4,7 +4,7 @@
         bootstrap="tests/init.php">
 
     <testsuites>
-        <testsuite name="Yahoo Finance Api tests">
+        <testsuite name="Yahoo Finance ServiceFactory tests">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

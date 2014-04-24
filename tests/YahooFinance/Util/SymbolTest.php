@@ -12,12 +12,14 @@
  * Time: 01:52
  */
 
-use Robsen77\YahooFinanceApi\Util\Symbol;
+namespace Robsen77\Tests\YahooFinance\Util;
+
+use Robsen77\YahooFinance\Util\Symbol;
 
 class SymbolTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Robsen77\YahooFinanceApi\Util\Symbol
+     * @var \Robsen77\YahooFinance\Util\Symbol
      */
     private $symbol;
 
@@ -85,4 +87,3 @@ class SymbolTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($bool);
     }
 }
- 

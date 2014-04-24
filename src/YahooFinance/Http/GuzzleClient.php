@@ -1,7 +1,7 @@
 <?php
 /**
  * Class GuzzleClient
- * @package Robsen77\YahooFinanceApi\Http
+ * @package Robsen77\YahooFinance\Http
  *
  * @author Robert Bernhard <bloddynewbie@gmail.com>
  */
@@ -11,10 +11,9 @@
  * @author Robert Bernhard <bloddynewbie@gmail.com>
  */
 
-namespace Robsen77\YahooFinanceApi\Http;
+namespace Robsen77\YahooFinance\Http;
 
 use Guzzle\Http\Client;
-
 
 class GuzzleClient extends Client implements HttpClientInterface
 {
@@ -25,4 +24,3 @@ class GuzzleClient extends Client implements HttpClientInterface
         $this->apiKey = $apiKey;
     }
 }
- 

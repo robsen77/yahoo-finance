@@ -1,7 +1,7 @@
 <?php
 /**
  * Class HttpClient
- * @package Robsen77\YahooFinanceApi\Factory
+ * @package Robsen77\YahooFinance\Factory
  *
  * @author Robert Bernhard <bloddynewbie@gmail.com>
  */
@@ -13,10 +13,10 @@
  * Time: 03:06
  */
 
-namespace Robsen77\YahooFinanceApi\Factory;
+namespace Robsen77\YahooFinance\Factory;
 
-use Robsen77\YahooFinanceApi\Config\Config;
-use Robsen77\YahooFinanceApi\Http\HttpClientInterface;
+use Robsen77\YahooFinance\Config\Config;
+use Robsen77\YahooFinance\Http\HttpClientInterface;
 
 class HttpClient
 {
@@ -50,4 +50,3 @@ class HttpClient
         return $instance;
     }
 }
- 

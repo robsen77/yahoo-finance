@@ -1,7 +1,7 @@
 <?php
 /**
  * Class Config
- * @package Robsen77\YahooFinanceApi\Config
+ * @package Robsen77\YahooFinance\Config
  *
  * @author Robert Bernhard <bloddynewbie@gmail.com>
  */
@@ -13,7 +13,7 @@
  * Time: 02:59
  */
 
-namespace Robsen77\YahooFinanceApi\Config;
+namespace Robsen77\YahooFinance\Config;
 
 
 class Config
@@ -26,7 +26,7 @@ class Config
     /**
      * @var string http client
      */
-    private $httpClient = "\\Robsen77\\YahooFinanceApi\\Http\\GuzzleClient";
+    private $httpClient = "\\Robsen77\\YahooFinance\\Http\\GuzzleClient";
 
 
     /**
@@ -61,4 +61,3 @@ class Config
         return $this->httpClient;
     }
 }
- 

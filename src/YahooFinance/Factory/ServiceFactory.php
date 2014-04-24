@@ -1,26 +1,26 @@
 <?php
 /**
- * Class Api
- * @package Robsen77\YahooFinanceApi\Factory
+ * Class ServiceFactory
+ * @package Robsen77\YahooFinance\Factory
  *
  * @author Robert Bernhard <bloddynewbie@gmail.com>
  */
 /**
- * Api.php
+ * ServiceFactory.php
  *
  * @author Robert Bernhard <bloddynewbie@gmail.com>
  * Date: 24.04.14
  * Time: 03:16
  */
 
-namespace Robsen77\YahooFinanceApi\Factory;
+namespace Robsen77\YahooFinance\Factory;
 
 
-use Robsen77\YahooFinanceApi\Api\Quote;
-use Robsen77\YahooFinanceApi\Exception\ApiFactoryException;
-use Robsen77\YahooFinanceApi\Http\HttpClientInterface;
+use Robsen77\YahooFinance\Exception\ServiceFactoryException;
+use Robsen77\YahooFinance\Http\HttpClientInterface;
+use Robsen77\YahooFinance\Service\Quote;
 
-class Api
+class ServiceFactory
 {
     /**
      * @var HttpClientInterface
@@ -34,7 +34,7 @@ class Api
 
     /**
      * @param $command
-     * @throws \Robsen77\YahooFinanceApi\Exception\ApiFactoryException
+     * @throws \Robsen77\YahooFinance\Exception\ServiceFactoryException
      */
     public function getInstance($command)
     {
@@ -43,7 +43,7 @@ class Api
                 return $this->getQuoteApi();
         }
 
-        throw new ApiFactoryException("api command $command is not supported!");
+        throw new ServiceFactoryException("api command $command is not supported!");
     }
 
     /**
@@ -54,4 +54,3 @@ class Api
         return new Quote($this->httpClient);
     }
 }
- 

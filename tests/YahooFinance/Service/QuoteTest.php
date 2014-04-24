@@ -12,9 +12,11 @@
  * Time: 02:49
  */
 
-use Robsen77\YahooFinanceApi\Api\Quote;
+namespace Robsen77\Tests\YahooFinance\Service;
 
-class QuoteTest extends PHPUnit_Framework_TestCase
+use Robsen77\YahooFinance\Service\Quote;
+
+class QuoteTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Quote
@@ -27,11 +29,15 @@ class QuoteTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Robsen77\YahooFinanceApi\Exception\SymbolException
+     * @expectedException \Robsen77\YahooFinance\Exception\SymbolException
      */
     public function testInvalidSymbolThrowsSymbolException()
     {
         $this->quote->get("!!!!");
     }
+
+    public function dummy()
+    {
+
+    }
 }
- 

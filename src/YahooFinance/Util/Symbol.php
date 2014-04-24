@@ -1,7 +1,7 @@
 <?php
 /**
  * Class Symbol
- * @package Robsen77\YahooFinanceApi\Util
+ * @package Robsen77\YahooFinance\Util
  *
  * @author Robert Bernhard <bloddynewbie@gmail.com>
  */
@@ -13,7 +13,7 @@
  * Time: 01:51
  */
 
-namespace Robsen77\YahooFinanceApi\Util;
+namespace Robsen77\YahooFinance\Util;
 
 
 class Symbol
@@ -78,4 +78,3 @@ class Symbol
         return $length < self::MIN_LENGTH || $length > self::MAX_LENGTH;
     }
 }
- 

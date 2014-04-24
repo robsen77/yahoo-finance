@@ -1,7 +1,7 @@
 <?php
 /**
  * Class Dispatcher
- * @package Robsen77\YahooFinanceApi
+ * @package Robsen77\YahooFinance
  *
  * @author Robert Bernhard <bloddynewbie@gmail.com>
  */
@@ -9,15 +9,13 @@
  * Dispatcher.php
  *
  * @author Robert Bernhard <bloddynewbie@gmail.com>
- * Date: 24.04.14
- * Time: 03:33
  */
 
-namespace Robsen77\YahooFinanceApi;
+namespace Robsen77\YahooFinance;
 
 
-use Robsen77\YahooFinanceApi\Factory\Api as ApiFactory;
-use Robsen77\YahooFinanceApi\Http\HttpClientInterface;
+use Robsen77\YahooFinance\Factory\ServiceFactory;
+use Robsen77\YahooFinance\Http\HttpClientInterface;
 
 class Dispatcher
 {
@@ -41,10 +39,9 @@ class Dispatcher
      */
     public function dispatch($method, $args)
     {
-        $apiFactory = new ApiFactory($this->httpClient);
-        $api = $apiFactory->getInstance($method);
+        $serviceFactory = new ServiceFactory($this->httpClient);
+        $service = $serviceFactory->getInstance($method);
 
-        return $api->get($args);
+        return $service->get($args);
     }
 }
- 

@@ -1,23 +1,22 @@
 <?php
 /**
  * Class Quote
- * @package Robsen77\YahooFinanceApi\Api
+ * @package Robsen77\YahooFinance\Service
  *
  * @author Robert Bernhard <bloddynewbie@gmail.com>
  */
+
 /**
  * Quote.php
  *
  * @author Robert Bernhard <bloddynewbie@gmail.com>
- * Date: 24.04.14
- * Time: 01:45
  */
 
-namespace Robsen77\YahooFinanceApi\Api;
+namespace Robsen77\YahooFinance\Service;
 
 
-use Robsen77\YahooFinanceApi\Exception\SymbolException;
-use Robsen77\YahooFinanceApi\Util\Symbol;
+use Robsen77\YahooFinance\Exception\SymbolException;
+use Robsen77\YahooFinance\Util\Symbol;
 
 class Quote
 {
@@ -27,8 +26,9 @@ class Quote
     private $symbol;
 
     /**
-     * @param $stockSymbol string
-     * @throws \Robsen77\YahooFinanceApi\Exception\SymbolException
+     * @param string $stockSymbol
+     * @throws \Robsen77\YahooFinance\Exception\SymbolException
+     * @return null
      */
     public function get($stockSymbol)
     {
@@ -41,4 +41,3 @@ class Quote
         return null;
     }
 }
- 

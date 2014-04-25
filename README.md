@@ -13,7 +13,7 @@ This API Client enables you to work with the Yahoo! Finance API.
 ```PHP
 <?php
     require_once 'vendor/autoload.php';
-    $config = new Robsen77\YahooFinance\Config();
+    $config = new Robsen77\YahooFinance\Config\Config();
     $api = new Robsen77\YahooFinance\Api($config);
 
     // get quotes for a single share symbol ...

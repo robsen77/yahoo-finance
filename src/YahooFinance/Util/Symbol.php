@@ -21,7 +21,7 @@ class Symbol
     /**
      * minimum length allowed for symbols
      */
-    const MIN_LENGTH = 2;
+    const MIN_LENGTH = 1;
 
     /**
      * maximum length allowed for symbols
@@ -59,6 +59,14 @@ class Symbol
         }
 
         return true;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSymbol()
+    {
+        return $this->symbol;
     }
 
     private function isEmpty()

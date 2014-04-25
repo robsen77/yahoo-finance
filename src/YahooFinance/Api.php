@@ -5,32 +5,34 @@
  * @author Robert Bernhard <bloddynewbie@gmail.com>
  */
 
-namespace Robsen77\YahooFinance;
-
-
-use Robsen77\YahooFinance\Config\Config;
-use Robsen77\YahooFinance\Factory\HttpClient as HttpClientFactory;
-use Robsen77\YahooFinance\Http\HttpClientInterface;
-
 /**
  * Class Service
  *
  * @package Robsen77\YahooFinance
  * @author Robert Bernhard <bloddynewbie@gmail.com>
- *
- * @method \Robsen77\YahooFinance\Service\Quote quote(string $symbol)
  */
+
+namespace Robsen77\YahooFinance;
+
+
+use Robsen77\YahooFinance\Config\Config;
+use Robsen77\YahooFinance\Factory\HttpClientFactory as HttpClientFactory;
+use Robsen77\YahooFinance\Factory\ServiceFactory;
+use Robsen77\YahooFinance\Factory\ServiceFactoryMethod;
+use Robsen77\YahooFinance\Http\ClientInterface;
+use Robsen77\YahooFinance\Service\Quote;
+
 class Api
 {
     /**
-     * @var HttpClientInterface
+     * @var ClientInterface
      */
     private $httpClient;
 
     /**
-     * @var Dispatcher
+     * @var ServiceFactoryMethod
      */
-    private $dispatcher;
+    private $serviceFactory;
 
     /**
      * @param Config $config
@@ -38,16 +40,25 @@ class Api
     public function __construct(Config $config)
     {
         $this->initHttpClient($config);
-        $this->initDispatcher();
+        $this->initServiceFactory();
     }
 
     /**
-     * @param $method string
-     * @param $args array
+     * gets quote for single symbol or an array of symbols
+     * @param $symbol
+     * @return null
      */
-    public function __call($method, $args)
+    public function getQuotes($symbols)
     {
-        $this->dispatcher->dispatch($method, $args);
+        if (!is_array($symbols)) {
+            $symbols = [$symbols];
+        }
+
+        /**
+         * @var Quote
+         */
+        $service = $this->serviceFactory->create(ServiceFactory::QUOTE);
+        return $service->query($symbols);
     }
 
     /**
@@ -57,14 +68,14 @@ class Api
     private function initHttpClient(Config $config)
     {
         $httpClientFactory = new HttpClientFactory($config);
-        $this->httpClient = $httpClientFactory->get();
+        $this->httpClient = $httpClientFactory->create();
     }
 
     /**
-     * initializes the service dispatcher
+     * initializes the service factory
      */
-    private function initDispatcher()
+    private function initServiceFactory()
     {
-        $this->dispatcher = new Dispatcher($this->httpClient);
+        $this->serviceFactory = new ServiceFactory($this->httpClient);
     }
 }

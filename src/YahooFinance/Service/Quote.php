@@ -1,13 +1,13 @@
 <?php
 /**
- * Class Quote
+ * Class QuoteCollection
  * @package Robsen77\YahooFinance\Service
  *
  * @author Robert Bernhard <bloddynewbie@gmail.com>
  */
 
 /**
- * Quote.php
+ * QuoteCollection.php
  *
  * @author Robert Bernhard <bloddynewbie@gmail.com>
  */
@@ -16,28 +16,77 @@ namespace Robsen77\YahooFinance\Service;
 
 
 use Robsen77\YahooFinance\Exception\SymbolException;
+use Robsen77\YahooFinance\Http\ClientInterface;
 use Robsen77\YahooFinance\Util\Symbol;
 
-class Quote
+class Quote implements ServiceInterface
 {
     /**
-     * @var Symbol
+     * @var ClientInterface
      */
-    private $symbol;
+    private $httpClient;
 
     /**
-     * @param string $stockSymbol
-     * @throws \Robsen77\YahooFinance\Exception\SymbolException
-     * @return null
+     * @var Symbol[]
      */
-    public function get($stockSymbol)
-    {
-        $this->symbol = new Symbol($stockSymbol);
+    private $symbols = [];
 
-        if (!$this->symbol->isValid()) {
-            throw new SymbolException("stock symbol is invalid");
+    /**
+     * @param ClientInterface $httpClient
+     */
+    public function __construct(ClientInterface $httpClient)
+    {
+        $this->httpClient = $httpClient;
+    }
+
+    /**
+     * @throws \Robsen77\YahooFinance\Exception\SymbolException
+     * @return \Robsen77\YahooFinance\Entity\Quote
+     */
+    public function query(array $symbols)
+    {
+        $this->preProcessSymbols($symbols);
+        $query = $this->getQuery();
+
+        $jsonResult = $this->httpClient->getQueryResult($query);
+
+        return new \Robsen77\YahooFinance\Repository\QuoteCollection($jsonResult);
+    }
+
+    /**
+     * validates symbols and creates an array of symbol objects for further operations
+     * @param array $symbols
+     * @throws \Robsen77\YahooFinance\Exception\SymbolException
+     */
+    private function preProcessSymbols(array $symbols)
+    {
+        foreach ($symbols as $symbolRun) {
+            $symbolUtil = new Symbol($symbolRun);
+
+            if (!$symbolUtil->isValid()) {
+                throw new SymbolException("stock symbol is invalid");
+            }
+
+            $this->symbols[] = $symbolUtil;
+        }
+    }
+
+    private function getQuery()
+    {
+        $query = "SELECT * FROM yahoo.finance.quotes WHERE symbol IN(%s)";
+        return $this->prepareQuery($query);
+    }
+
+    private function prepareQuery($query)
+    {
+        $symbols = [];
+
+        foreach ($this->symbols as $symbol) {
+            $symbols[] = "'" . $symbol->getSymbol() . "'";
         }
 
-        return null;
+        $joinedSymbols = join(",", $symbols);
+
+        return sprintf($query, $joinedSymbols);
     }
 }

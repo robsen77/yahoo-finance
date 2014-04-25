@@ -25,7 +25,8 @@ class QuoteTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->quote = new Quote();
+        $httpClient = $this->getMock('Robsen77\YahooFinance\Http\ClientInterface');
+        $this->quote = new Quote($httpClient);
     }
 
     /**
@@ -33,7 +34,7 @@ class QuoteTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidSymbolThrowsSymbolException()
     {
-        $this->quote->get("!!!!");
+        $this->quote->query(["!!!!"]);
     }
 
     public function dummy()

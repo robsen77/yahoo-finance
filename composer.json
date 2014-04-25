@@ -2,7 +2,7 @@
     "name": "robsen77/yahoo-finance",
     "type": "library",
     "description": "PHP library for accessing Yahoo Finance data",
-    "keywords": ["php", "yahoo", "finance", "stock", "share", "history", "market", "api"],
+    "keywords": ["php", "yahoo", "finance", "stock", "share", "history", "market", "api", "quotes", "statistics"],
     "homepage": "https://github.com/robsen77/yahoo-finance",
     "license": "",
     "authors": [
@@ -13,7 +13,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "guzzle/http": "v3.9.0"
+        "guzzlehttp/guzzle": "~4.0"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*",

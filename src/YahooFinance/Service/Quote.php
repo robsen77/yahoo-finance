@@ -17,6 +17,7 @@ namespace Robsen77\YahooFinance\Service;
 
 use Robsen77\YahooFinance\Exception\SymbolException;
 use Robsen77\YahooFinance\Http\ClientInterface;
+use Robsen77\YahooFinance\Repository\QuoteCollection;
 use Robsen77\YahooFinance\Util\Symbol;
 
 class Quote implements ServiceInterface
@@ -40,8 +41,7 @@ class Quote implements ServiceInterface
     }
 
     /**
-     * @throws \Robsen77\YahooFinance\Exception\SymbolException
-     * @return \Robsen77\YahooFinance\Entity\Quote
+     * @return QuoteCollection
      */
     public function query(array $symbols)
     {
@@ -50,7 +50,7 @@ class Quote implements ServiceInterface
 
         $jsonResult = $this->httpClient->getQueryResult($query);
 
-        return new \Robsen77\YahooFinance\Repository\QuoteCollection($jsonResult);
+        return new QuoteCollection($jsonResult);
     }
 
     /**

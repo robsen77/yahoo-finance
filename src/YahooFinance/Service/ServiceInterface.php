@@ -24,6 +24,7 @@ interface ServiceInterface
 
     /**
      * execute query and return result
+     * @param array $params
      * @return mixed
      */
     public function query(array $params);

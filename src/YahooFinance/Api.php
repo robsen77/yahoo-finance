@@ -16,12 +16,13 @@ namespace Robsen77\YahooFinance;
 
 
 use Robsen77\YahooFinance\Config\Config;
+use Robsen77\YahooFinance\Entity\Quote;
 use Robsen77\YahooFinance\Factory\HttpClientFactory as HttpClientFactory;
 use Robsen77\YahooFinance\Factory\ServiceFactory;
 use Robsen77\YahooFinance\Factory\ServiceFactoryMethod;
 use Robsen77\YahooFinance\Http\ClientInterface;
 use Robsen77\YahooFinance\Repository\QuoteCollection;
-use Robsen77\YahooFinance\Service\Quote;
+use Robsen77\YahooFinance\Service\Quote as QuoteService;
 
 class Api
 {
@@ -45,9 +46,24 @@ class Api
     }
 
     /**
+     * gets a single quote
+     *
+     * wrapper for getQuotes()
+     *
+     * @param $symbol
+     * @return Quote
+     */
+    public function getQuote($symbol)
+    {
+        $quotesCollection = $this->getQuotes(is_array($symbol) ? $symbol : [$symbol]);
+
+        return $quotesCollection[0];
+    }
+
+    /**
      * gets quote for single symbol or an array of symbols
      * @param array $symbols
-     * @return QuoteCollection
+     * @return QuoteCollection|Quote[]
      */
     public function getQuotes($symbols)
     {
@@ -56,7 +72,7 @@ class Api
         }
 
         /**
-         * @var Quote
+         * @var QuoteService
          */
         $service = $this->serviceFactory->create(ServiceFactory::QUOTE);
         return $service->query($symbols);

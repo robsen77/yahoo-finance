@@ -1,4 +1,4 @@
-# Yahoo Finance PHP API Client #
+# Yahoo! Finance PHP API Client #
 
 > A PHP API Client library for accessing Yahoo! Finance data.
 
@@ -12,20 +12,20 @@ This API Client enables you to work with the Yahoo! Finance API.
 
 ```PHP
 <?php
-    require_once 'vendor/autoload.php';
-    $config = new Robsen77\YahooFinance\Config();
-    $api = new Robsen77\YahooFinance\Api($config);
+   require_once '../vendor/autoload.php';
 
-    // get quotes for a single share symbol ...
-    $quoteCollection = $api->getQuotes("YHOO");
-    // ... or get several quotes together
-    $quoteCollection = $api->getQuotes(["YHOO","FB", "MS", "GE"]);
+   $config = new \Robsen77\YahooFinance\Config\Config();
+   $api = new \Robsen77\YahooFinance\Api($config);
 
-    foreach ($quoteCollection as $quote) {
-        var_dump($quote);
-    }
+   $quoteEntity = $api->getQuote("YHOO");
+
+   $price = $quoteEntity->getCurrentPrice();
+
+   echo "current price (YHOO): $price\n";
 ?>
 ```
+
+For more examples, look into the examples/ directory.
 
 ## Requirements ##
 * [PHP 5.4 or higher](http://www.php.net/)

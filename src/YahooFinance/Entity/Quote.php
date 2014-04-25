@@ -74,6 +74,11 @@ class Quote
     /**
      * @var string
      */
+    private $lastTradeTime;
+
+    /**
+     * @var string
+     */
     private $tradeDate;
 
     /**
@@ -701,11 +706,39 @@ class Quote
     }
 
     /**
+     * @param string $lastTradeTime
+     */
+    public function setLastTradeTime($lastTradeTime)
+    {
+        $this->lastTradeTime = $lastTradeTime;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastTradeTime()
+    {
+        return $this->lastTradeTime;
+    }
+
+    /**
      * @param float $lastTradePriceOnly
      */
     public function setLastTradePriceOnly($lastTradePriceOnly)
     {
         $this->lastTradePriceOnly = $lastTradePriceOnly;
+    }
+
+    /**
+     * gets the current share price
+     *
+     * wrapper for getLastTradePriceOnly
+     *
+     * @return float
+     */
+    public function getCurrentPrice()
+    {
+        return $this->getLastTradePriceOnly();
     }
 
     /**

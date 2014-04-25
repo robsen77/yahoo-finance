@@ -20,6 +20,7 @@ use Robsen77\YahooFinance\Factory\HttpClientFactory as HttpClientFactory;
 use Robsen77\YahooFinance\Factory\ServiceFactory;
 use Robsen77\YahooFinance\Factory\ServiceFactoryMethod;
 use Robsen77\YahooFinance\Http\ClientInterface;
+use Robsen77\YahooFinance\Repository\QuoteCollection;
 use Robsen77\YahooFinance\Service\Quote;
 
 class Api
@@ -45,8 +46,8 @@ class Api
 
     /**
      * gets quote for single symbol or an array of symbols
-     * @param $symbol
-     * @return null
+     * @param array $symbols
+     * @return QuoteCollection
      */
     public function getQuotes($symbols)
     {

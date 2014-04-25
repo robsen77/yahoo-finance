@@ -1,6 +1,6 @@
 # Yahoo! Finance PHP API Client #
 
-> A PHP API Client library for accessing Yahoo! Finance data.
+> A PHP library for accessing quotes through Yahoo finance API
 
 It offers a simple API to access Yahoo! Finance data.
 

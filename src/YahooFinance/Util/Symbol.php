@@ -54,7 +54,7 @@ class Symbol
             return false;
         }
 
-        if ($this->lengthIsInvalidValid()) {
+        if ($this->lengthIsValid()) {
             return false;
         }
 
@@ -80,7 +80,7 @@ class Symbol
         return preg_match("/[^a-z0-9]+/i", $this->symbol);
     }
 
-    private function lengthIsInvalidValid()
+    private function lengthIsValid()
     {
         $length = strlen($this->symbol);
         return $length < self::MIN_LENGTH || $length > self::MAX_LENGTH;

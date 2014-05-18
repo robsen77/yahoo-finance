@@ -130,7 +130,7 @@ class QuoteCollection implements \Iterator, \Countable, \ArrayAccess
      */
     private function createEntity($quoteData)
     {
-        $quote = new \Robsen77\YahooFinance\Entity\Quote();
+        $quote = new Quote();
 
         $quote->setSymbol($quoteData->Symbol);
         $quote->setAsk($quoteData->Ask);

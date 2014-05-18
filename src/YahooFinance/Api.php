@@ -1,12 +1,12 @@
 <?php
 /**
- * Service.php
+ * Api.php
  *
  * @author Robert Bernhard <bloddynewbie@gmail.com>
  */
 
 /**
- * Class Service
+ * Class Api
  *
  * @package Robsen77\YahooFinance
  * @author Robert Bernhard <bloddynewbie@gmail.com>

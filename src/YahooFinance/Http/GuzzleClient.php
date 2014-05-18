@@ -20,11 +20,6 @@ use Robsen77\YahooFinance\Exception\HttpException;
 class GuzzleClient implements ClientInterface
 {
     /**
-     * @var string user Yahoo Api key
-     */
-    private $apiKey;
-
-    /**
      * @var string Yahoo Api endpoint
      */
     private $apiBaseUrl = "https://query.yahooapis.com/v1/public/yql";
@@ -51,15 +46,6 @@ class GuzzleClient implements ClientInterface
     public function __construct()
     {
         $this->guzzleClient = new Client(['base_url' => $this->apiBaseUrl]);
-    }
-
-    /**
-     * sets the Yahoo Api key
-     * @param string $apiKey
-     */
-    public function setApiKey($apiKey)
-    {
-        $this->apiKey = $apiKey;
     }
 
     /**

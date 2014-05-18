@@ -19,12 +19,6 @@ namespace Robsen77\YahooFinance\Http;
 interface ClientInterface
 {
     /**
-     * sets the Yahoo Api key
-     * @param string $apiKey
-     */
-    public function setApiKey($apiKey);
-
-    /**
      * executes a query
      * @param string $query
      * @return string json

@@ -40,13 +40,12 @@ class HttpClientFactory
      */
     public function create()
     {
-        $apiKey = $this->config->getApiKey();
         $class = $this->config->getHttpClient();
 
         if (!class_exists($class)) {
             throw new HttpClientFactoryException(
                 "empty or unknown http client class ($class),
-                please provide http client in configuration."
+                please provide a http client in configuration."
             );
         }
 
@@ -56,10 +55,8 @@ class HttpClientFactory
         $instance = new $class;
 
         if (!($instance instanceof ClientInterface)) {
-            throw new HttpClientFactoryException("instance of http client class is not of type ClientInterface");
+            throw new HttpClientFactoryException("instance of http client class is not type of ClientInterface");
         }
-
-        $instance->setApiKey($apiKey);
 
         return $instance;
     }

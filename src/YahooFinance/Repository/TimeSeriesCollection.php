@@ -23,7 +23,7 @@ class TimeSeriesCollection implements \Iterator, \Countable, \ArrayAccess
     private $position = 0;
 
     /**
-     * @var array
+     * @var TimeSeriesCollection|TimeSeriesQuote[]
      */
     private $collection;
 
@@ -126,6 +126,33 @@ class TimeSeriesCollection implements \Iterator, \Countable, \ArrayAccess
     public function offsetUnset($offset)
     {
         unset($this->collection[$offset]);
+    }
+
+    public function orderByDateAsc()
+    {
+        $this->orderByDate(SORT_ASC);
+    }
+
+    public function orderByDateDesc()
+    {
+        $this->orderByDate(SORT_DESC);
+    }
+
+    private function orderByDate($direction)
+    {
+        $collection = $this->collection;
+        $sortDate = [];
+        $sortSymbol = [];
+
+        foreach ($collection as $timeSeriesQuoteEntity) {
+            $sortDate[] = $timeSeriesQuoteEntity->getDate();
+            $sortSymbol[] = $timeSeriesQuoteEntity->getSymbol();
+        }
+
+        array_multisort($sortDate, $direction, SORT_STRING, $sortSymbol, SORT_ASC, SORT_STRING, $collection);
+
+        $this->collection = $collection;
+        $this->position = 0;
     }
 
     /**

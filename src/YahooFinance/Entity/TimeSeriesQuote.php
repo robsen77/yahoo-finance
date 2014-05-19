@@ -61,7 +61,7 @@ class TimeSeriesQuote
      */
     public function setAdjClose($adjClose)
     {
-        $this->adjClose = $adjClose;
+        $this->adjClose = (float)$adjClose;
     }
 
     /**
@@ -77,7 +77,7 @@ class TimeSeriesQuote
      */
     public function setClose($close)
     {
-        $this->close = $close;
+        $this->close = (float)$close;
     }
 
     /**
@@ -109,7 +109,7 @@ class TimeSeriesQuote
      */
     public function setHigh($high)
     {
-        $this->high = $high;
+        $this->high = (float)$high;
     }
 
     /**
@@ -125,7 +125,7 @@ class TimeSeriesQuote
      */
     public function setLow($low)
     {
-        $this->low = $low;
+        $this->low = (float)$low;
     }
 
     /**
@@ -141,7 +141,7 @@ class TimeSeriesQuote
      */
     public function setOpen($open)
     {
-        $this->open = $open;
+        $this->open = (float)$open;
     }
 
     /**
@@ -173,7 +173,7 @@ class TimeSeriesQuote
      */
     public function setVolume($volume)
     {
-        $this->volume = $volume;
+        $this->volume = (int)$volume;
     }
 
     /**

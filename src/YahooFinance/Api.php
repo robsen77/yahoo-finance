@@ -21,7 +21,6 @@ use Robsen77\YahooFinance\Config\Config;
 use Robsen77\YahooFinance\Factory\HttpClientFactory as HttpClientFactory;
 use Robsen77\YahooFinance\Factory\ServiceFactory;
 use Robsen77\YahooFinance\Factory\ServiceFactoryMethod;
-use Robsen77\YahooFinance\Http\ClientInterface;
 
 class Api
 {
@@ -36,11 +35,6 @@ class Api
     use TimeSeriesQuote;
 
     /**
-     * @var ClientInterface
-     */
-    private $httpClient;
-
-    /**
      * @var ServiceFactoryMethod
      */
     private $serviceFactory;
@@ -50,25 +44,20 @@ class Api
      */
     public function __construct(Config $config)
     {
-        $this->initHttpClient($config);
-        $this->initServiceFactory();
+        $this->initServiceFactory($config);
     }
 
-    /**
-     * initializes the http client
-     * @param Config $config
-     */
-    private function initHttpClient(Config $config)
+    protected function getHttpClient(Config $config)
     {
         $httpClientFactory = new HttpClientFactory($config);
-        $this->httpClient = $httpClientFactory->create();
+        return $httpClientFactory->create();
     }
 
     /**
      * initializes the service factory
      */
-    private function initServiceFactory()
+    private function initServiceFactory(Config $config)
     {
-        $this->serviceFactory = new ServiceFactory($this->httpClient);
+        $this->serviceFactory = new ServiceFactory($this->getHttpClient($config));
     }
 }

@@ -22,7 +22,7 @@ class GuzzleClient implements ClientInterface
     /**
      * @var string Yahoo Api endpoint
      */
-    private $apiBaseUrl = "https://query.yahooapis.com/v1/public/yql";
+    private $apiEndpoint = "https://query.yahooapis.com/v1/public/yql";
 
     /**
      * Api base params
@@ -45,7 +45,7 @@ class GuzzleClient implements ClientInterface
      */
     public function __construct()
     {
-        $this->guzzleClient = new Client(['base_url' => $this->apiBaseUrl]);
+        $this->guzzleClient = new Client(['base_url' => $this->apiEndpoint]);
     }
 
     /**
@@ -56,7 +56,7 @@ class GuzzleClient implements ClientInterface
     public function getQueryResult($query)
     {
         $query = urlencode($query);
-        $url = $this->apiBaseUrl
+        $url = $this->apiEndpoint
             . '?q=' . $query
             . $this->basePrams;
 

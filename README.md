@@ -25,7 +25,7 @@ This API Client enables you to work with the Yahoo! Finance API.
 ?>
 ```
 
-For more examples, look into the examples/ directory.
+For more examples, look into the [examples](https://github.com/robsen77/yahoo-finance/tree/master/examples) directory.
 
 ## Requirements ##
 * [PHP 5.4 or higher](http://www.php.net/)
@@ -62,12 +62,12 @@ The library is available on [GitHub](https://github.com/robsen77/yahoo-finance).
 
 solved or in progress:
 
-* quotes
+* current quotes
+* history quotes
 
 not solved:
 
 * _sectors (open)_
-* _historical data (open)_
 * _cash flow (open)_
 * _income statement (open)_
 * _industry (open)_

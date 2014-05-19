@@ -1,7 +1,7 @@
 <?php
 /**
  * Class Quote
- * @package Robsen77\YahooFinance\Closure
+ * @package Robsen77\YahooFinance\Api
  *
  * @author Robert Bernhard <bloddynewbie@gmail.com>
  */

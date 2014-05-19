@@ -25,12 +25,12 @@ class Quote implements ServiceInterface
     /**
      * @var ClientInterface
      */
-    private $httpClient;
+    protected $httpClient;
 
     /**
      * @var Symbol[]
      */
-    private $symbols = [];
+    protected $symbols = [];
 
     /**
      * @param ClientInterface $httpClient
@@ -41,7 +41,8 @@ class Quote implements ServiceInterface
     }
 
     /**
-     * @return QuoteCollection
+     * @param array $symbols
+     * @return mixed|QuoteCollection
      */
     public function query(array $symbols)
     {
@@ -58,7 +59,7 @@ class Quote implements ServiceInterface
      * @param array $symbols
      * @throws \Robsen77\YahooFinance\Exception\SymbolException
      */
-    private function preProcessSymbols(array $symbols)
+    protected function preProcessSymbols(array $symbols)
     {
         foreach ($symbols as $symbolRun) {
             $symbolUtil = new Symbol($symbolRun);
@@ -79,14 +80,18 @@ class Quote implements ServiceInterface
 
     private function prepareQuery($query)
     {
+        $joinedSymbols = $this->getJoinedSymbols();
+        return sprintf($query, $joinedSymbols);
+    }
+
+    protected function getJoinedSymbols()
+    {
         $symbols = [];
 
         foreach ($this->symbols as $symbol) {
             $symbols[] = "'" . $symbol->getSymbol() . "'";
         }
 
-        $joinedSymbols = join(",", $symbols);
-
-        return sprintf($query, $joinedSymbols);
+        return join(",", $symbols);
     }
 }

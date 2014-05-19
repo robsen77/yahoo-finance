@@ -16,6 +16,7 @@ namespace Robsen77\YahooFinance;
 
 
 use Robsen77\YahooFinance\Api\Quote;
+use Robsen77\YahooFinance\Api\TimeSeriesQuote;
 use Robsen77\YahooFinance\Config\Config;
 use Robsen77\YahooFinance\Factory\HttpClientFactory as HttpClientFactory;
 use Robsen77\YahooFinance\Factory\ServiceFactory;
@@ -25,9 +26,14 @@ use Robsen77\YahooFinance\Http\ClientInterface;
 class Api
 {
     /**
-     * quote api trait
+     * Quote api trait
      */
     use Quote;
+
+    /**
+     * TimeSeriesQuote api trait
+     */
+    use TimeSeriesQuote;
 
     /**
      * @var ClientInterface

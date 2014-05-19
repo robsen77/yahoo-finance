@@ -17,6 +17,7 @@ namespace Robsen77\YahooFinance\Factory;
 use Robsen77\YahooFinance\Exception\ServiceFactoryException;
 use Robsen77\YahooFinance\Service\Quote;
 use Robsen77\YahooFinance\Service\ServiceInterface;
+use Robsen77\YahooFinance\Service\TimeSeriesQuote;
 
 class ServiceFactory extends ServiceFactoryMethod
 {
@@ -32,6 +33,8 @@ class ServiceFactory extends ServiceFactoryMethod
         switch ($type) {
             case static::QUOTE:
                 return new Quote($this->httpClient);
+            case static::TIME_SERIES:
+                return new TimeSeriesQuote($this->httpClient);
         }
 
         throw new ServiceFactoryException("unknown service $type");

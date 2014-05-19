@@ -21,6 +21,7 @@ use Robsen77\YahooFinance\Service\ServiceInterface;
 abstract class ServiceFactoryMethod
 {
     const QUOTE = "quote";
+    const TIME_SERIES = "timeSeries";
 
     /**
      * @var ClientInterface

@@ -18,7 +18,7 @@ namespace Robsen77\YahooFinance\Service;
 use Robsen77\YahooFinance\Exception\SymbolException;
 use Robsen77\YahooFinance\Http\ClientInterface;
 use Robsen77\YahooFinance\Repository\QuoteCollection;
-use Robsen77\YahooFinance\Util\Symbol;
+use Robsen77\YahooFinance\Validator\Symbol;
 
 class Quote implements ServiceInterface
 {

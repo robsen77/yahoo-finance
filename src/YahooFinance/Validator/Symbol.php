@@ -13,7 +13,7 @@
  * Time: 01:51
  */
 
-namespace Robsen77\YahooFinance\Util;
+namespace Robsen77\YahooFinance\Validator;
 
 
 class Symbol

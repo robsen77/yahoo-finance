@@ -14,7 +14,9 @@
 
 namespace Robsen77\YahooFinance\Service;
 
+use Robsen77\YahooFinance\Exception\DateException;
 use Robsen77\YahooFinance\Repository\TimeSeriesCollection;
+use Robsen77\YahooFinance\Validator\Date;
 
 class TimeSeriesQuote extends Quote implements DateRangeInterface
 {
@@ -35,6 +37,7 @@ class TimeSeriesQuote extends Quote implements DateRangeInterface
      */
     public function setDateStart($dateStart)
     {
+        $this->validateDate($dateStart);
         $this->dateStart = $dateStart;
     }
 
@@ -45,6 +48,7 @@ class TimeSeriesQuote extends Quote implements DateRangeInterface
      */
     public function setDateEnd($dateEnd)
     {
+        $this->validateDate($dateEnd);
         $this->dateEnd = $dateEnd;
     }
 
@@ -60,6 +64,20 @@ class TimeSeriesQuote extends Quote implements DateRangeInterface
         $jsonResult = $this->httpClient->getQueryResult($query);
 
         return new TimeSeriesCollection($jsonResult);
+    }
+
+    /**
+     * validator for input dates
+     * @param $date
+     * @throws \Robsen77\YahooFinance\Exception\DateException
+     */
+    private function validateDate($date)
+    {
+        $dateValidator = new Date($date);
+
+        if (!$dateValidator->isValid()) {
+            throw new DateException("date is invalid");
+        }
     }
 
     private function getQuery()

@@ -12,14 +12,14 @@
  * Time: 01:52
  */
 
-namespace Robsen77\Tests\YahooFinance\Util;
+namespace Robsen77\Tests\YahooFinance\Validator;
 
-use Robsen77\YahooFinance\Util\Symbol;
+use Robsen77\YahooFinance\Validator\Symbol;
 
 class SymbolTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Robsen77\YahooFinance\Util\Symbol
+     * @var \Robsen77\YahooFinance\Validator\Symbol
      */
     private $symbol;
 

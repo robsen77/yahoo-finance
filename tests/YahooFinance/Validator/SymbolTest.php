@@ -14,25 +14,25 @@
 
 namespace Robsen77\Tests\YahooFinance\Validator;
 
-use Robsen77\YahooFinance\Validator\Symbol;
+use Robsen77\YahooFinance\Validator\Symbol as SymbolValidator;
 
 class SymbolTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Robsen77\YahooFinance\Validator\Symbol
+     * @var SymbolValidator
      */
-    private $symbol;
+    private $symbolValidator;
 
     public function initSymbolInstance($symbol)
     {
-        $this->symbol = new Symbol($symbol);
+        $this->symbolValidator = new SymbolValidator($symbol);
     }
 
     public function testEmptySymbolIsFalse()
     {
         $this->initSymbolInstance("");
 
-        $bool = $this->symbol->isValid();
+        $bool = $this->symbolValidator->isValid();
         $this->assertFalse($bool);
     }
 
@@ -40,7 +40,7 @@ class SymbolTest extends \PHPUnit_Framework_TestCase
     {
         $this->initSymbolInstance(" ");
 
-        $bool = $this->symbol->isValid();
+        $bool = $this->symbolValidator->isValid();
         $this->assertFalse($bool);
     }
 
@@ -48,7 +48,7 @@ class SymbolTest extends \PHPUnit_Framework_TestCase
     {
         $this->initSymbolInstance("AB!cd123");
 
-        $bool = $this->symbol->isValid();
+        $bool = $this->symbolValidator->isValid();
         $this->assertFalse($bool);
     }
 
@@ -56,34 +56,34 @@ class SymbolTest extends \PHPUnit_Framework_TestCase
     {
         $this->initSymbolInstance("Ad3");
 
-        $bool = $this->symbol->isValid();
+        $bool = $this->symbolValidator->isValid();
         $this->assertTrue($bool);
     }
 
     public function testLengthGreaterThenMaximum()
     {
-        $symbol = str_repeat("A", Symbol::MAX_LENGTH + 1);
+        $symbol = str_repeat("A", SymbolValidator::MAX_LENGTH + 1);
         $this->initSymbolInstance($symbol);
 
-        $bool = $this->symbol->isValid();
+        $bool = $this->symbolValidator->isValid();
         $this->assertFalse($bool);
     }
 
     public function testLengthLesserThenMinimum()
     {
-        $symbol = str_repeat("A", Symbol::MIN_LENGTH - 1);
+        $symbol = str_repeat("A", SymbolValidator::MIN_LENGTH - 1);
         $this->initSymbolInstance($symbol);
 
-        $bool = $this->symbol->isValid();
+        $bool = $this->symbolValidator->isValid();
         $this->assertFalse($bool);
     }
 
     public function testLengthIsFine()
     {
-        $symbol = str_repeat("A", Symbol::MIN_LENGTH);
+        $symbol = str_repeat("A", SymbolValidator::MIN_LENGTH);
         $this->initSymbolInstance($symbol);
 
-        $bool = $this->symbol->isValid();
+        $bool = $this->symbolValidator->isValid();
         $this->assertTrue($bool);
     }
 }

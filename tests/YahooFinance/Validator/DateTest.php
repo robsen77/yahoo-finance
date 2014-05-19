@@ -44,7 +44,15 @@ class DateTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($bool);
     }
 
-    public function testInvalidDate()
+    public function testInvalidDateScheme()
+    {
+        $this->initDateInstance("1111-11-1");
+
+        $bool = $this->dateValidator->isValid();
+        $this->assertFalse($bool);
+    }
+
+    public function testInvalidGregorianDate()
     {
         $this->initDateInstance("2014-14-44");
 

@@ -42,7 +42,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(3, $collection);
     }
 
-    public function testGetTimeSeriesQuoteForSingleCompanies()
+    public function testGetTimeSeriesQuoteForSingleCompany()
     {
         $collection = $this->api->getTimeSeriesQuotes("YHOO", "2010-01-01", "2010-01-31");
         $this->assertCount(19, $collection);
@@ -50,7 +50,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
 
     public function testGetTimeSeriesQuoteForSeveralCompanies()
     {
-        $collection = $this->api->getTimeSeriesQuotes(["YHOO", "MS", "DELL"], "2010-01-01", "2010-01-31");
+        $collection = $this->api->getTimeSeriesQuotes(["YHOO", "MS", "AAPL"], "2010-01-01", "2010-01-31");
         $this->assertCount(19 * 3, $collection);
     }
 }
